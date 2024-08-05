@@ -1,0 +1,49 @@
+/* src/components/QuizPage.css */
+
+.quiz-page {
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: inherit;
+    color: inherit;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .quiz-page h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .quiz-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .quiz-page input[type='text'],
+  .quiz-page input[type='email'] {
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .quiz-page button[type='submit'] {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  .quiz-page button[type='submit']:hover {
+    background-color: #218838;
+  }
+  

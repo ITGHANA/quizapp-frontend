@@ -1,0 +1,38 @@
+/* src/components/HomePage.css */
+
+.home {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: inherit;
+    color: inherit;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .home h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .quiz-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .quiz-buttons button {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  .quiz-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
