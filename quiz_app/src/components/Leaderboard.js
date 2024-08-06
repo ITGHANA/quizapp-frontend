@@ -4,7 +4,7 @@ import React from 'react';
 const Leaderboard = () => {
   return (
     <div className="leaderboard">
-      <h2>Leaderboard</h2>
+      <center><h2>Leaderboard</h2></center>
       {/* Leaderboard details go here */}
     </div>
   );
