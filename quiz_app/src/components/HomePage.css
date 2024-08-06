@@ -1,0 +1,128 @@
+/* src/components/HomePage.css */
+
+.home {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: inherit;
+  color: inherit;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.home.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.home.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.home h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.quiz-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.quiz-buttons button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.quiz-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.quiz-of-the-day {
+  max-width: 600px;
+  width: 100%;
+  background-color: inherit;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.quiz-of-the-day.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.quiz-of-the-day.light {
+  background-color: #f9f9f9;
+  color: #000000;
+}
+
+.quiz-of-the-day h2 {
+  margin-bottom: 15px;
+  font-size: 1.8em;
+}
+
+.quiz-of-the-day ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.quiz-of-the-day li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.quiz-of-the-day li:hover {
+  background-color: #eeeeee;
+}
+
+.quiz-of-the-day.dark li:hover {
+  background-color: #444444;
+}
+
+.quiz-of-the-day li.selected {
+  border-color: #007bff;
+  background-color: #e0f0ff;
+}
+
+.quiz-of-the-day.dark li.selected {
+  border-color: #66b3ff;
+  background-color: #444;
+}
+
+.feedback {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: inherit;
+}
+
+.timer {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: inherit;
+}
+
+.dark .feedback,
+.dark .timer {
+  color: #bbbbbb;
+}
