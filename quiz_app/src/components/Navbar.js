@@ -1,36 +1,33 @@
-// src/components/Navbar.js
+// src/components/NavBar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = ({ toggleTheme, theme }) => {
+const NavBar = ({ theme, toggleTheme }) => {
   return (
     <nav className={`navbar ${theme}`}>
-      <div className="nav-left">
-        <Link to="/">Home</Link>
-        <div className="dropdown">
+      <ul className="navbar-menu">
+        <li className="menu-item"><a href="/">Home</a></li>
+        <li className="menu-item dropdown">
           <span>Quizzes</span>
-          <div className="dropdown-content">
-            <Link to="/quizzes/science">Science</Link>
-            <Link to="/quizzes/tech">Tech</Link>
-            <Link to="/quizzes/general">General Knowledge</Link>
-          </div>
-        </div>
-        <Link to="/leaderboard">Leaderboard</Link>
-        <Link to="/about">About</Link>
-      </div>
-      <div className="nav-right">
+          <ul className="dropdown-content">
+            <li><a href="quizzes/science">Science</a></li>
+            <li><a href="quizzes/tech">Tech</a></li>
+            <li><a href="quizzes/general-knowledge">General Knowledge</a></li>
+            {/* Add more quiz links as needed */}
+          </ul>
+        </li>
+        <li className="menu-item"><a href="/leaderboard">Leaderboard</a></li>
+        <li className="menu-item"><a href="/about">About</a></li>
+      </ul>
+      <div className="theme-toggle">
         <label className="switch">
-          <input
-            type="checkbox"
-            onChange={toggleTheme}
-            checked={theme === 'dark'}
-          />
-          <span className="slider round"></span>
+          <input type="checkbox" checked={theme === 'dark'} onChange={toggleTheme} />
+          <span className="slider"></span>
         </label>
+        <span className="theme-label">{theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}</span>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default NavBar;

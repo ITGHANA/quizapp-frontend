@@ -10,10 +10,17 @@ import About from './components/About';
 import './App.css';
 
 const App = () => {
-  const [theme, setTheme] = useState('light');
+  // Initialize theme based on localStorage value or default to 'light'
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'light';
+  });
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme); // Save theme to localStorage
+      return newTheme;
+    });
   };
 
   return (

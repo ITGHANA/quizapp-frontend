@@ -36,6 +36,7 @@ const HomePage = ({ theme }) => {
   const [quizIndex, setQuizIndex] = useState(getCurrentDayIndex());
   const [selectedOption, setSelectedOption] = useState(null);
   const [feedback, setFeedback] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   function getTimeUntilNextQuiz() {
     const now = new Date();
@@ -62,6 +63,14 @@ const HomePage = ({ theme }) => {
     return () => clearInterval(dayInterval);
   }, []);
 
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % 2); // Toggle between slides 0 and 1
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(slideInterval);
+  }, []);
+
   const formatTime = (milliseconds) => {
     const totalSeconds = Math.floor(milliseconds / 1000);
     const hours = Math.floor(totalSeconds / 3600);
@@ -86,6 +95,24 @@ const HomePage = ({ theme }) => {
   return (
     <div className={`home ${theme}`}>
       <h1>Welcome to the Quiz App!</h1>
+      <div className="slideshow">
+        <div className={`slide ${currentSlide === 0 ? 'active' : ''}`}>
+          <img src="slide1.jpg" alt="Slide 1" />
+          <div className="overlay">
+            <Link to="/quizzes">
+              <button>View All Quizzes</button>
+            </Link>
+          </div>
+        </div>
+        <div className={`slide ${currentSlide === 1 ? 'active' : ''}`}>
+          <img src="slide2.jpg" alt="Slide 2" />
+          <div className="overlay">
+            <Link to="/leaderboard">
+              <button>Leaderboard</button>
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className="quiz-buttons">
         <Link to="/quizzes/science"><button>Science Quiz</button></Link>
         <Link to="/quizzes/tech"><button>Tech Quiz</button></Link>
