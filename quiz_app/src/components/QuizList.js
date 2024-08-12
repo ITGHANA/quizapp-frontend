@@ -1,7 +1,7 @@
 // src/components/QuizList.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuizContext } from '../QuizContext';
+import { useQuizContext } from '../context/QuizContext';
 import './QuizList.css';
 
 const QuizList = () => {

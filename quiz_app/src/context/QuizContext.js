@@ -7,9 +7,9 @@ export const QuizProvider = ({ children }) => {
     const [quizQuestions, setQuizQuestions] = useState([
         {
             id: 1,
-            question: 'What is the capital of France?',
-            options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
-            answer: 'Paris',
+            question: 'What is the capital of Ghana?',
+            options: ['Berlin', 'Accra', 'Paris', 'Rome'],
+            answer: 'Accra',
         },
         // Add more questions as needed
     ]);

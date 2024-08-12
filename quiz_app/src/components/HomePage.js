@@ -18,6 +18,15 @@ const HomePage = ({ theme }) => {
     return nextQuizTime - now;
   }
 
+  function getCurrentDayIndex() {
+    const currentDate = new Date();
+    const startOfYear = new Date(currentDate.getFullYear(), 0, 0);
+    const diff = currentDate - startOfYear + (startOfYear.getTimezoneOffset() - currentDate.getTimezoneOffset()) * 60 * 1000;
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dayOfYear = Math.floor(diff / oneDay);
+    return dayOfYear % quizQuestions.length;
+  }
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(getTimeUntilNextQuiz());
