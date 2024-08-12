@@ -1,37 +1,10 @@
-// src/components/HomePage.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useQuizContext } from '../context/QuizContext';
 import './HomePage.css';
 
-const quizQuestions = [
-  {
-    question: 'What is the capital of France?',
-    options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
-    answer: 'Paris',
-  },
-  {
-    question: 'Who wrote "Romeo and Juliet"?',
-    options: ['William Shakespeare', 'Mark Twain', 'Jane Austen', 'Charles Dickens'],
-    answer: 'William Shakespeare',
-  },
-  {
-    question: 'What is the largest planet in our solar system?',
-    options: ['Mars', 'Earth', 'Jupiter', 'Saturn'],
-    answer: 'Jupiter',
-  },
-  // Add more questions as needed
-];
-
-const getCurrentDayIndex = () => {
-  const currentDate = new Date();
-  const startOfYear = new Date(currentDate.getFullYear(), 0, 0);
-  const diff = currentDate - startOfYear + (startOfYear.getTimezoneOffset() - currentDate.getTimezoneOffset()) * 60 * 1000;
-  const oneDay = 1000 * 60 * 60 * 24;
-  const dayOfYear = Math.floor(diff / oneDay);
-  return dayOfYear % quizQuestions.length;
-};
-
 const HomePage = ({ theme }) => {
+  const { quizQuestions, slides } = useQuizContext();
   const [timeLeft, setTimeLeft] = useState(getTimeUntilNextQuiz());
   const [quizIndex, setQuizIndex] = useState(getCurrentDayIndex());
   const [selectedOption, setSelectedOption] = useState(null);
@@ -65,11 +38,11 @@ const HomePage = ({ theme }) => {
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % 2); // Toggle between slides 0 and 1
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length); // Toggle between slides
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(slideInterval);
-  }, []);
+  }, [slides.length]);
 
   const formatTime = (milliseconds) => {
     const totalSeconds = Math.floor(milliseconds / 1000);
@@ -82,6 +55,7 @@ const HomePage = ({ theme }) => {
   };
 
   const handleOptionClick = (option) => {
+    const currentQuestion = quizQuestions[quizIndex];
     setSelectedOption(option);
     if (option === currentQuestion.answer) {
       setFeedback('Congratulations! You selected the correct answer.');
@@ -96,22 +70,16 @@ const HomePage = ({ theme }) => {
     <div className={`home ${theme}`}>
       <h1>Welcome to the Quiz App!</h1>
       <div className="slideshow">
-        <div className={`slide ${currentSlide === 0 ? 'active' : ''}`}>
-          <img src="slide1.jpg" alt="Slide 1" />
-          <div className="overlay">
-            <Link to="/quizzes">
-              <button>View All Quizzes</button>
-            </Link>
+        {slides.map((slide, index) => (
+          <div key={slide.id} className={`slide ${currentSlide === index ? 'active' : ''}`}>
+            <img src={slide.image_url} alt={`Slide ${index + 1}`} />
+            <div className="overlay">
+              <Link to={slide.link}>
+                <button>{slide.button_text}</button>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className={`slide ${currentSlide === 1 ? 'active' : ''}`}>
-          <img src="slide2.jpg" alt="Slide 2" />
-          <div className="overlay">
-            <Link to="/leaderboard">
-              <button>Leaderboard</button>
-            </Link>
-          </div>
-        </div>
+        ))}
       </div>
       <div className="quiz-buttons">
         <Link to="/quizzes/science"><button>Science Quiz</button></Link>
